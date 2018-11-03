@@ -21,28 +21,28 @@
 
                 <fieldset class="form-group">
                     <h4><strong><label for="name">Name (Required)</label></strong></h4>
-                    <input class="form-control w-25" type="text" placeholder="Your Name">
+                    <input class="form-control w-25" type="text" placeholder="Your Name" id="name">
                 </fieldset>
                 <br>
                 <h4><strong><label for="gender">Gender (Required)</label></strong></h4>
                 <fieldset class="form-group">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" id="maleLableID" value="option1">
+                        <input class="form-check-input" type="radio" name="gender" id="gender" value="male">
                         <label class="form-check-label" for="inlineRadio1">Male</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" id="femaleLabelID" value="option2">
+                        <input class="form-check-input" type="radio" name="gender" id="gender" value="female">
                         <label class="form-check-label" for="inlineRadio2">Female</label>
                     </div>
-                    
+
 
                 </fieldset>
                 <br>
                 <fieldset class="form-group">
                     <h4><strong><label for="photo">Link to Photo Image (Required)</label></strong></h4>
-                    <input class="form-control w-25" type="text" placeholder="http://i.imgur.com/S58RU.jpg">
+                    <input class="form-control w-25" type="text" placeholder="http://i.imgur.com/S58RU.jpg" id="photo">
                 </fieldset>
-                
+
                 <hr class="my-4">
                 <br>
                 <h5><strong>Question #1</strong></h5>
@@ -197,33 +197,50 @@
                 </fieldset>
                 <br>
                 <input type="submit" class="btn btn-danger" value="Click Here To See Your Match!" id="submit">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </form>
         </div>
+        <hr>
     </div>
+
+    <div id="matchModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">X</button>
+                    <h2 class="modal-title">Bow Chicka WOW WOW</h2>
+                </div>
+                <div class="modal-body">
+                    <h2 id="modalName"></h2>
+                    <img id="modalImg" src="" onError="this.src='https://answers.atlassian.com/images/icons/profilepics/default.png'"
+                        width=500px alt="Match">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
         crossorigin="anonymous"></script>
+    <script type="text/javascript">
 
+        $('#submit').on("click", function () {
+            let userInput = {
+                name: $('#name').val().trim(),
+                photo: $('#photo').val().trim(),
+                gender: $('#gender').val().trim(),
+                scores: [$('#question01').val().trim(), $('#question02').val().trim(), $('#question03').val().trim(), $('#question04').val().trim(), $('#question05').val().trim(), $('#question06').val().trim(), $('#question07').val().trim(), $('#question08').val().trim(), $('#question09').val().trim(), $('#question10').val().trim()]
+            }
+            let currentURL = window.location.origin;
+
+            $.post(currentURL + '/api/friends', userInput, function (data) {
+                $("#modalName").text(data.name);
+                $("#modalImg").attr("src", data.photo);
+                $("#matchModal").modal("show");
+            });
+            return false;
+        });
+    </script>
 </body>
 
 </html>
