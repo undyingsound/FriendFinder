@@ -236,7 +236,7 @@
             $.post(currentURL + '/api/friends', userInput, function (data) {
                 $("#modalName").text(data.name);
                 $("#modalImg").attr("src", data.photo);
-                $("#matchModal").modal("show");
+                $("#matchModal").modal("toggle");
             });
             return false;
         });
