@@ -1,19 +1,26 @@
 {
   "name": "friendfinder",
   "version": "1.0.0",
-  "description": "A dating application",
+  "description": "A Matching Application",
   "main": "server.js",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "path": "^0.12.7"
+    "body-parser": "^1.18.3",
+    "path": "^0.12.7",
+    "express": "^4.14.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "engines": {
-    "node": "4.4.7"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/undyingsound/FriendFinder.git"
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/undyingsound/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/undyingsound/FriendFinder#readme",
+  
 }
