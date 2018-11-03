@@ -259,7 +259,7 @@
             $.post(currentURL + '/api/friends', userInput, function (data) {
                 $("#modalName").text(data.name);
                 $("#modalImg").attr("src", data.photo);
-                $("#matchModal").modal("toggle");
+                $("#matchModal").modal("show");
             });
             return false;
         });
